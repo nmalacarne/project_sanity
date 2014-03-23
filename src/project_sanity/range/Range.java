@@ -28,8 +28,19 @@ public class Range {
         return MAX;
     }
     
-    public boolean isInRange(int value){
+    public int rangeCheck(int value){
         
-        return ( value >= MIN && value <= MAX );
+        int checked;
+        checked = minCheck(value);
+        checked = maxCheck(checked);
+        return checked;
+    }
+    
+    public int minCheck(int value){
+        return (value >= MIN) ? value : MIN;
+    }
+    
+    public int maxCheck(int value){
+        return (value <= MAX) ? value : MAX;
     }
 }

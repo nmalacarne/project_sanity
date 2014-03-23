@@ -60,7 +60,8 @@ public class Blood extends AEssence implements IWoundable, IMendable {
     
     @Override
     public int getValue() {
-        return validRange.getMAX() - woundPool.size() - super.getValue();
+        int total = validRange.getMAX() - woundPool.size() - super.getValue();
+        return validRange.rangeCheck(total);
     }
 
     @Override
