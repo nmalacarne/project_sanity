@@ -1,0 +1,5 @@
+Loss of Blood
+
+Hero needs to lose X Blood
+Hero decays Blood X times
+Blood adds X DecayCounters to its DecayPool
