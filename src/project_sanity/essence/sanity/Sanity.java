@@ -60,7 +60,8 @@ public class Sanity extends AEssence implements IWoundable, IMendable {
     
     @Override
     public int getValue() {
-        return validRange.getMAX() - delusionPool.size() - super.getValue();
+        int total = validRange.getMAX() - delusionPool.size() - super.getValue();
+        return validRange.rangeCheck(total);
     }
 
     @Override

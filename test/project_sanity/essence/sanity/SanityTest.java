@@ -94,7 +94,7 @@ public class SanityTest {
         for (int i = 0; i < 51; i++){instance.decay();}
         
         // wound 50 times
-        for (int i = 0; i < 51; i++){instance.wound();}
+        for (int i = 0; i < 50; i++){instance.wound();}
         
         assertEquals(0, instance.getValue());
     }
