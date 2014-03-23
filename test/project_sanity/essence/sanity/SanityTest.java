@@ -90,9 +90,13 @@ public class SanityTest {
     public void testGetValue() {
         System.out.println("getValue");
         Sanity instance = new Sanity();
-        int expResult = 100;
-        int result = instance.getValue();
-        assertEquals(expResult, result);
+        // decay 51 times
+        for (int i = 0; i < 51; i++){instance.decay();}
+        
+        // wound 50 times
+        for (int i = 0; i < 51; i++){instance.wound();}
+        
+        assertEquals(0, instance.getValue());
     }
 
     /**
