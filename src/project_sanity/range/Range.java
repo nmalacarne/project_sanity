@@ -29,11 +29,7 @@ public class Range {
     }
     
     public int rangeCheck(int value){
-        
-        int checked;
-        checked = minCheck(value);
-        checked = maxCheck(checked);
-        return checked;
+        return maxCheck(minCheck(value));
     }
     
     public int minCheck(int value){
