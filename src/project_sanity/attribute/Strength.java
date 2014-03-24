@@ -32,7 +32,8 @@ public class Strength extends AAttribute {
 
     @Override
     public int getValue() {
-        return validRange.getMAX() - super.getValue();
+        int total = validRange.getMAX() - super.getValue();
+        return validRange.rangeCheck(total);
     }
 
     @Override
