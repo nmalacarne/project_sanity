@@ -22,19 +22,19 @@ import project_sanity.essence.sanity.Sanity;
  */
 public abstract class AHero {
     
-    private final Map<Class, AEssence>      essences;
-    private final Map<Class, AAttribute>    attributes;
+    private final Map<Class, AEssence>      m_ess;
+    private final Map<Class, AAttribute>    m_att;
 
     public AHero() {
         
-        essences    = new HashMap<>();
-        attributes  = new HashMap<>();
+        m_ess    = new HashMap<>();
+        m_att  = new HashMap<>();
         
-        essences.put(Blood.class, new Blood());
-        essences.put(Sanity.class, new Sanity());
+        m_ess.put(Blood.class, new Blood());
+        m_ess.put(Sanity.class, new Sanity());
         
-        attributes.put(Strength.class, new Strength(3));
-        attributes.put(Dexterity.class, new Dexterity(3));
-        attributes.put(Intelligence.class, new Intelligence(3));
+        m_att.put(Strength.class, new Strength(3));
+        m_att.put(Dexterity.class, new Dexterity(3));
+        m_att.put(Intelligence.class, new Intelligence(3));
     }
 }
