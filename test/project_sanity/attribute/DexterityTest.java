@@ -8,18 +8,19 @@ package project_sanity.attribute;
 
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.assertEquals;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
  * @author nicholas
  */
-public class StrengthTest {
+public class DexterityTest {
     
-    public StrengthTest() {
+    public DexterityTest() {
     }
     
     @BeforeClass
@@ -43,9 +44,9 @@ public class StrengthTest {
      */
     @Test
     public void testDecay() {
-        Strength s = new Strength(3);
-        for (int i = 0; i < 0; i++){s.decay();}
-        assertEquals(1, s.getValue());
+        AAttribute s = new Dexterity(4);
+        for (int i = 0; i < 5; i++){s.decay();}
+        Assert.assertEquals(1, s.getValue());
     }
 
     /**
@@ -53,10 +54,10 @@ public class StrengthTest {
      */
     @Test
     public void testGrow() {
-        Strength s = new Strength(3);
-        for (int i = 0; i < 3; i++){s.decay();}
-        for (int i = 0; i < 3; i++){s.grow();}
-        assertEquals(3, s.getValue());
+        Dexterity d = new Dexterity(6);
+        for (int i = 0; i < 5; i++){d.decay();}
+        for (int i = 0; i < 3; i++){d.grow();}
+        Assert.assertEquals(4, d.getValue());
     }
 
     /**
@@ -64,10 +65,10 @@ public class StrengthTest {
      */
     @Test
     public void testGetValue() {
-        Strength s = new Strength(3);
-        for (int i = 0; i < 20; i++){s.decay();}
-        for (int i = 0; i < 1; i++){s.grow();}
-        assertEquals(1, s.getValue());
+        Dexterity d = new Dexterity(2);
+        for (int i = 0; i < 20; i++){d.decay();}
+        for (int i = 0; i < 1; i++){d.grow();}
+        Assert.assertEquals(1, d.getValue());
     }
 
     /**
@@ -75,8 +76,8 @@ public class StrengthTest {
      */
     @Test
     public void testToString() {
-        Strength s = new Strength(3);
-        assertEquals(s.getClass(), Strength.class);
+        Dexterity d = new Dexterity(2);
+        assertEquals(d.getClass(), Dexterity.class);
     }
     
 }

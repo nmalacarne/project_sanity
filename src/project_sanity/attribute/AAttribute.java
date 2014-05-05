@@ -10,34 +10,47 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import project_sanity.IDecayable;
 import project_sanity.IGrowable;
+import project_sanity.IResetable;
 import project_sanity.IValuable;
 import project_sanity.counter.ACounter;
 import project_sanity.counter.DecayCounter;
+import project_sanity.range.Range;
 
 /**
  *
  * @author nicholas
  */
-public abstract class AAttribute implements IDecayable, IGrowable, IValuable {
+public abstract class AAttribute implements IDecayable, IGrowable, 
+                                            IValuable,  IResetable {
     
-    private final Deque<ACounter> decayPool;
+    private final int m_default;
+    private final Range m_range;
+    private final Deque<ACounter> m_decay;
 
-    public AAttribute() {
-        decayPool = new ArrayDeque<>();
+    public AAttribute(int value) {
+        m_range   = new Range(1, 10);
+        m_default = m_range.rangeCheck(value);
+        m_decay   = new ArrayDeque<>();
+    }
+
+    @Override
+    public void reset() {
+        m_decay.clear();
     }
 
     @Override
     public void decay() {
-        decayPool.add(new DecayCounter());
+        m_decay.add(new DecayCounter());
     }
 
     @Override
     public void grow() {
-        decayPool.pollFirst();
+        m_decay.pollFirst();
     }
 
     @Override
     public int getValue() {
-        return decayPool.size();
+        int total = m_range.getMAX() - (m_range.getMAX() - m_default) - m_decay.size();
+        return m_range.rangeCheck(total);
     }
 }

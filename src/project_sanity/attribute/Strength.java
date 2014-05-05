@@ -6,18 +6,14 @@
 
 package project_sanity.attribute;
 
-import project_sanity.range.Range;
-
 /**
  *
  * @author nicholas
  */
 public class Strength extends AAttribute {
-    
-    private final Range validRange;
 
-    public Strength() {
-        validRange = new Range(1, 10);
+    public Strength(int value) {
+        super(value);
     }
 
     @Override
@@ -28,12 +24,6 @@ public class Strength extends AAttribute {
     @Override
     public void grow() {
         super.grow();
-    }
-
-    @Override
-    public int getValue() {
-        int total = validRange.getMAX() - super.getValue();
-        return validRange.rangeCheck(total);
     }
 
     @Override

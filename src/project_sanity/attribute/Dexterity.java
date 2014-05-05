@@ -11,5 +11,23 @@ package project_sanity.attribute;
  * @author nicholas
  */
 public class Dexterity extends AAttribute {
-    
+
+    public Dexterity(int value) {
+        super(value);
+    }
+
+    @Override
+    public void decay() {
+        super.decay();
+    }
+
+    @Override
+    public void grow() {
+        super.grow();
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
 }

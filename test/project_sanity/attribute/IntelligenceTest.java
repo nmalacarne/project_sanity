@@ -8,18 +8,18 @@ package project_sanity.attribute;
 
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
  * @author nicholas
  */
-public class StrengthTest {
+public class IntelligenceTest {
     
-    public StrengthTest() {
+    public IntelligenceTest() {
     }
     
     @BeforeClass
@@ -39,44 +39,41 @@ public class StrengthTest {
     }
 
     /**
-     * Test of decay method, of class Strength.
+     * Test of decay method, of class Intelligence.
      */
     @Test
     public void testDecay() {
-        Strength s = new Strength(3);
-        for (int i = 0; i < 0; i++){s.decay();}
-        assertEquals(1, s.getValue());
+        System.out.println("decay");
+        Intelligence instance = new Intelligence(3);
+        for (int i = 0; i < 5; i++){instance.decay();}
+        assertEquals(1, instance.getValue());
     }
 
     /**
-     * Test of grow method, of class Strength.
+     * Test of grow method, of class Intelligence.
      */
     @Test
     public void testGrow() {
-        Strength s = new Strength(3);
-        for (int i = 0; i < 3; i++){s.decay();}
-        for (int i = 0; i < 3; i++){s.grow();}
-        assertEquals(3, s.getValue());
+        System.out.println("grow");
+        Intelligence instance = new Intelligence(3);
     }
 
     /**
-     * Test of getValue method, of class Strength.
+     * Test of getValue method, of class Intelligence.
      */
     @Test
     public void testGetValue() {
-        Strength s = new Strength(3);
-        for (int i = 0; i < 20; i++){s.decay();}
-        for (int i = 0; i < 1; i++){s.grow();}
-        assertEquals(1, s.getValue());
+        System.out.println("getValue");
+        Intelligence instance = new Intelligence(3);
     }
 
     /**
-     * Test of toString method, of class Strength.
+     * Test of toString method, of class Intelligence.
      */
     @Test
     public void testToString() {
-        Strength s = new Strength(3);
-        assertEquals(s.getClass(), Strength.class);
+        System.out.println("toString");
+        Intelligence instance = new Intelligence(3);
     }
     
 }
