@@ -5,18 +5,17 @@ import java.util.Deque;
 import project_sanity.IDecayable;
 import project_sanity.IGrowable;
 import project_sanity.IValuable;
-import project_sanity.counter.ACounter;
 import project_sanity.counter.DecayCounter;
 
 /**
- * Used to manage a deque of decay counters.
+ * Decay can represent the amount of damage taken or the cooldown
+ * for a skill.
  * 
- * @author nicholas
- * @version %G%
+ * @author nicholas malacarne <nicholas.malacarne@gmail.com>
  */
 public class DecayPool implements IDecayable, IGrowable, IValuable {
     
-    private final Deque<ACounter> pool;
+    private final Deque< DecayCounter > pool;
 
     /**
      * Default constructor
@@ -30,7 +29,7 @@ public class DecayPool implements IDecayable, IGrowable, IValuable {
      */
     @Override
     public void decay() {
-        this.pool.add(new DecayCounter());
+        this.pool.add( new DecayCounter() );
     }
 
     /**
