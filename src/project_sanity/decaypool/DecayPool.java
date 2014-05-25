@@ -22,7 +22,7 @@ public class DecayPool implements IDecayable, IGrowable, IValuable {
      * Default constructor
      */
     public DecayPool() {
-        pool = new ArrayDeque<>();
+        this.pool = new ArrayDeque<>();
     }
     
     /**
@@ -30,7 +30,7 @@ public class DecayPool implements IDecayable, IGrowable, IValuable {
      */
     @Override
     public void decay() {
-        pool.add(new DecayCounter());
+        this.pool.add(new DecayCounter());
     }
 
     /**
@@ -38,7 +38,7 @@ public class DecayPool implements IDecayable, IGrowable, IValuable {
      */
     @Override
     public void grow() {
-        pool.pollFirst();
+        this.pool.pollFirst();
     }
     
     /**
@@ -47,6 +47,6 @@ public class DecayPool implements IDecayable, IGrowable, IValuable {
      */
     @Override
     public int getValue() {
-        return pool.size();
+        return this.pool.size();
     }
 }
