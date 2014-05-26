@@ -9,20 +9,20 @@ import project_sanity.counter.ACounter;
 import project_sanity.counter.DecayCounter;
 
 /**
- * Used to manage a deque of decay counters.
+ * Used to manage a 'health' system.
  * 
  * @author nicholas
  * @version %G%
  */
-public class DecayPool implements IDecayable, IGrowable, IValuable {
+public abstract class ADecayPool implements IDecayable, IGrowable, IValuable {
     
-    private final Deque<ACounter> pool;
+    private final Deque<ACounter> decayPool;
 
     /**
      * Default constructor
      */
-    public DecayPool() {
-        pool = new ArrayDeque<>();
+    public ADecayPool() {
+        decayPool = new ArrayDeque<>();
     }
     
     /**
@@ -30,7 +30,7 @@ public class DecayPool implements IDecayable, IGrowable, IValuable {
      */
     @Override
     public void decay() {
-        pool.add(new DecayCounter());
+        decayPool.add(new DecayCounter());
     }
 
     /**
@@ -38,7 +38,7 @@ public class DecayPool implements IDecayable, IGrowable, IValuable {
      */
     @Override
     public void grow() {
-        pool.pollFirst();
+        decayPool.pollFirst();
     }
     
     /**
@@ -47,6 +47,6 @@ public class DecayPool implements IDecayable, IGrowable, IValuable {
      */
     @Override
     public int getValue() {
-        return pool.size();
+        return decayPool.size();
     }
 }
