@@ -16,8 +16,8 @@ public class Essence {
     private final DecayPool decay;
     private final WoundPool wounds;
 
-    private Essence(Essence.Builder build) {
-        this.range = build.range;
+    private Essence(Essence.Builder b) {
+        this.range = b.range;
         
         this.decay  = new DecayPool();
         this.wounds = new WoundPool();
