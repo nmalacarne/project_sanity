@@ -28,7 +28,7 @@ public class Pool implements ITypable, ICountable {
 
     /**
      *
-     * @return
+     * @return Class
      */
     @Override
     public Class getType() {
