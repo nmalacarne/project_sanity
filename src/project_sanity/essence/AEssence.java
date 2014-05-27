@@ -1,28 +1,25 @@
 package project_sanity.essence;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
 import project_sanity.IDecayable;
 import project_sanity.IGrowable;
 import project_sanity.IValuable;
-import project_sanity.counter.ACounter;
-import project_sanity.counter.DecayCounter;
+import project_sanity.counter.Decay;
+import project_sanity.pool.Pool;
 
 /**
  * Used to manage a 'health' system.
  * 
- * @author nicholas
- * @version %G%
+ * @author nicholas malacarne <nicholas.malacarne@gmail.com>
  */
 public abstract class AEssence implements IDecayable, IGrowable, IValuable {
     
-    private final Deque<ACounter> decayPool;
+    private final Pool pool;
 
     /**
-     * Default constructor
+     * sole constructor
      */
     public AEssence() {
-        decayPool = new ArrayDeque<>();
+        this.pool = new Pool(new Decay());
     }
     
     /**
@@ -30,7 +27,7 @@ public abstract class AEssence implements IDecayable, IGrowable, IValuable {
      */
     @Override
     public void decay() {
-        decayPool.add(new DecayCounter());
+        this.pool.addCounter();
     }
 
     /**
@@ -38,7 +35,7 @@ public abstract class AEssence implements IDecayable, IGrowable, IValuable {
      */
     @Override
     public void grow() {
-        decayPool.pollFirst();
+        this.pool.removeCounter();
     }
     
     /**
@@ -47,6 +44,6 @@ public abstract class AEssence implements IDecayable, IGrowable, IValuable {
      */
     @Override
     public int getValue() {
-        return decayPool.size();
+        return this.pool.getCount();
     }
 }
