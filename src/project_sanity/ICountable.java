@@ -10,4 +10,5 @@ public interface ICountable {
 
     int addCounter(ACounter counter);
     int removeCounter();
+    int getCount();
 }
