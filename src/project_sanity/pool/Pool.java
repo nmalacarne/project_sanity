@@ -18,6 +18,7 @@ public class Pool implements ITypable, ICountable {
 
     /**
      * sole constructor
+     * @param prototype
      */
     public Pool(ACounter prototype) {
         this.prototype = prototype;
@@ -25,14 +26,17 @@ public class Pool implements ITypable, ICountable {
         this.counters = new ArrayDeque<>();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Class getType() {
         return this.prototype.getClass();
     }
 
     /**
-     *
-     * @param counter 
+     * 
      * @return int
      */
     @Override
