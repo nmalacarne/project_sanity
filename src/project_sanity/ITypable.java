@@ -6,5 +6,5 @@ package project_sanity;
  */
 public interface ITypable {
     
-    java.lang.Class getType();
+    Class getType();
 }
