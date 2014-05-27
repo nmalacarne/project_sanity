@@ -8,7 +8,7 @@ package project_sanity.counter;
 
 /**
  *
- * @author nicholas
+ * @author nicholas malacarne <nicholas.malacarne@gmail.com>
  */
 public abstract class ACounter {
     
