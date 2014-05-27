@@ -10,6 +10,6 @@ package project_sanity.counter;
  *
  * @author nicholas
  */
-public class ACounter {
+public abstract class ACounter {
     
 }
