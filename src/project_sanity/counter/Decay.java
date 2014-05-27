@@ -10,6 +10,6 @@ package project_sanity.counter;
  *
  * @author nicholas
  */
-public class WoundCounter extends ACounter {
+public class Decay extends ACounter {
     
 }
