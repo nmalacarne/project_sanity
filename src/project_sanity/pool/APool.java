@@ -19,11 +19,20 @@ public class APool implements ICountable {
 
     @Override
     public int addCounter(ACounter counter) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.counters.addLast(counter);
+        
+        return this.getCount();
     }
 
     @Override
     public int removeCounter() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.counters.pollFirst();
+        
+        return this.getCount();
+    }
+
+    @Override
+    public int getCount() {
+        return this.counters.size();
     }
 }
