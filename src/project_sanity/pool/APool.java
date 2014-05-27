@@ -13,10 +13,18 @@ public class APool implements ICountable {
     
     private final Deque<ACounter> counters;
 
+    /**
+     * sole constructor
+     */
     public APool() {
         this.counters = new ArrayDeque<>();
     }
 
+    /**
+     *
+     * @param counter 
+     * @return int
+     */
     @Override
     public int addCounter(ACounter counter) {
         this.counters.addLast(counter);
@@ -24,6 +32,10 @@ public class APool implements ICountable {
         return this.getCount();
     }
 
+    /**
+     *
+     * @return int 
+     */
     @Override
     public int removeCounter() {
         this.counters.pollFirst();
@@ -31,6 +43,10 @@ public class APool implements ICountable {
         return this.getCount();
     }
 
+    /**
+     *
+     * @return int
+     */
     @Override
     public int getCount() {
         return this.counters.size();
