@@ -1,12 +1,10 @@
 package project_sanity.essence.sanity;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
 import project_sanity.IMendable;
 import project_sanity.IWoundable;
-import project_sanity.counter.ACounter;
-import project_sanity.counter.Wound;
+import project_sanity.counter.Delusion;
 import project_sanity.essence.AEssence;
+import project_sanity.pool.Pool;
 import project_sanity.range.Range;
 
 /**
@@ -17,21 +15,21 @@ public class Sanity extends AEssence implements IWoundable, IMendable {
 
     private final Range range;
     
-    private final Deque<ACounter> delusionPool;
+    private final Pool pool;
 
     public Sanity() {
-        range = new Range(0, 100);
-        delusionPool = new ArrayDeque<>();
+        this.range = new Range(0, 100);
+        this.pool = new Pool(new Delusion());
     }
 
     @Override
     public void wound() {
-        delusionPool.add(new Wound());
+        this.pool.addCounter();
     }
 
     @Override
     public void mend() {
-        delusionPool.pollFirst();
+        this.pool.removeCounter();
     }
     
     @Override
@@ -54,7 +52,7 @@ public class Sanity extends AEssence implements IWoundable, IMendable {
     
     @Override
     public int getValue() {
-        int total = range.getMAX() - delusionPool.size() - super.getValue();
+        int total = this.range.getMAX() - this.pool.getCount() - super.getValue();
         return range.rangeCheck(total);
     }
 
