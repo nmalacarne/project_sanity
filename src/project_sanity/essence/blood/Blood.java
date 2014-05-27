@@ -1,12 +1,10 @@
 package project_sanity.essence.blood;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
 import project_sanity.IMendable;
 import project_sanity.IWoundable;
-import project_sanity.counter.ACounter;
-import project_sanity.counter.WoundCounter;
+import project_sanity.counter.Wound;
 import project_sanity.essence.AEssence;
+import project_sanity.pool.Pool;
 import project_sanity.range.Range;
 
 /**
@@ -15,28 +13,29 @@ import project_sanity.range.Range;
  */
 public class Blood extends AEssence implements IWoundable, IMendable {
     
-    private final Range validRange;
+    private final Range range;
     
-    private final Deque<ACounter> woundPool;
+    private final Pool pool;
 
     public Blood() {
-        validRange = new Range(0, 100);
-        woundPool = new ArrayDeque<>();
+        this.range = new Range(0, 100);
+        
+        this.pool = new Pool(new Wound());
     }
 
     @Override
     public void wound() {
-        woundPool.add(new WoundCounter());
+        this.pool.addCounter();
     }
 
     @Override
     public void mend() {
-        woundPool.pollFirst();
+        this.pool.removeCounter();
     }
     
     @Override
     public void decay() {
-        if (super.getValue() < validRange.getMAX()){
+        if (super.getValue() < range.getMAX()){
             super.decay();
         }else{
             // alert blood empty -nm
@@ -45,7 +44,7 @@ public class Blood extends AEssence implements IWoundable, IMendable {
 
     @Override
     public void grow() {
-        if (super.getValue() > validRange.getMIN()){
+        if (super.getValue() > range.getMIN()){
             super.grow();
         }else{
             // alert blood full -nm
@@ -54,8 +53,8 @@ public class Blood extends AEssence implements IWoundable, IMendable {
     
     @Override
     public int getValue() {
-        int total = validRange.getMAX() - woundPool.size() - super.getValue();
-        return validRange.rangeCheck(total);
+        int total = range.getMAX() - pool.getCount() - super.getValue();
+        return range.rangeCheck(total);
     }
 
     @Override
