@@ -1,6 +1,11 @@
 package project_sanity.essence.sanity;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import project_sanity.IAlertable;
+import project_sanity.IBuildable;
 import project_sanity.IMendable;
 import project_sanity.IWoundable;
 import project_sanity.counter.Delusion;
@@ -19,10 +24,18 @@ public class Sanity extends AEssence implements IWoundable, IMendable {
     private final Range range;
     
     private final Pool pool;
+    
+    private final List<IAlertable> observers;
 
-    public Sanity() {
+    private Sanity(Sanity.Builder builder) {
+        
+        Sanity.LOG.setLevel(Level.INFO);
+        
         this.range = new Range(0, 100);
+        
         this.pool = new Pool(new Delusion());
+        
+        this.observers = builder.observers;
     }
 
     @Override
@@ -30,7 +43,7 @@ public class Sanity extends AEssence implements IWoundable, IMendable {
         if ( this.getWounds() < range.getMAX()){
             this.pool.addCounter();
         }else{
-            // alert wounds full -nm
+            Sanity.LOG.log(Level.INFO, "{0} full wounds!", this);
         }
     }
 
@@ -44,7 +57,7 @@ public class Sanity extends AEssence implements IWoundable, IMendable {
         if (this.getWounds() > range.getMIN()){
             this.pool.removeCounter();
         }else{
-            // alert wounds empty -nm
+            Sanity.LOG.log(Level.INFO, "{0} has no wounds!", this);
         }
     }
     
@@ -53,7 +66,7 @@ public class Sanity extends AEssence implements IWoundable, IMendable {
         if (super.getValue() < range.getMAX()){
             super.decay();
         }else{
-            // alert sanity empty -nm
+            Sanity.LOG.log(Level.INFO, "{0} !", this);
         }
     }
 
@@ -75,5 +88,22 @@ public class Sanity extends AEssence implements IWoundable, IMendable {
     @Override
     public String toString() {
         return this.getClass().getSimpleName();
+    }
+    
+    public static class Builder implements IBuildable<Sanity>{
+
+        private final List<IAlertable> observers = new ArrayList<>();
+        
+        public Sanity.Builder addObserver(IAlertable observer){
+            
+            this.observers.add(observer);
+            
+            return this;
+        }
+        
+        @Override
+        public Sanity build() {
+            return new Sanity(this);
+        }
     }
 }
