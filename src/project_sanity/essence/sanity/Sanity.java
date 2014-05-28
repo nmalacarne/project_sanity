@@ -1,5 +1,6 @@
 package project_sanity.essence.sanity;
 
+import java.util.logging.Logger;
 import project_sanity.IMendable;
 import project_sanity.IWoundable;
 import project_sanity.counter.Delusion;
@@ -13,6 +14,8 @@ import project_sanity.range.Range;
  */
 public class Sanity extends AEssence implements IWoundable, IMendable {
 
+    private final static Logger LOG = Logger.getLogger(Sanity.class.getName());
+    
     private final Range range;
     
     private final Pool pool;
@@ -24,12 +27,25 @@ public class Sanity extends AEssence implements IWoundable, IMendable {
 
     @Override
     public void wound() {
-        this.pool.addCounter();
+        if ( this.getWounds() < range.getMAX()){
+            this.pool.addCounter();
+        }else{
+            // alert wounds full -nm
+        }
+    }
+
+    @Override
+    public int getWounds() {
+        return this.pool.getCount();
     }
 
     @Override
     public void mend() {
-        this.pool.removeCounter();
+        if (this.getWounds() > range.getMIN()){
+            this.pool.removeCounter();
+        }else{
+            // alert wounds empty -nm
+        }
     }
     
     @Override
