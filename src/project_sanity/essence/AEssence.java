@@ -1,5 +1,6 @@
 package project_sanity.essence;
 
+import java.util.logging.Logger;
 import project_sanity.IDecayable;
 import project_sanity.IGrowable;
 import project_sanity.IValuable;
@@ -12,6 +13,8 @@ import project_sanity.pool.Pool;
  * @author nicholas malacarne <nicholas.malacarne@gmail.com>
  */
 public abstract class AEssence implements IDecayable, IGrowable, IValuable {
+    
+    private final static Logger LOG = Logger.getLogger(AEssence.class.getName());
     
     private final Pool pool;
 
