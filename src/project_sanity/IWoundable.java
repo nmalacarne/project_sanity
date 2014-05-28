@@ -13,4 +13,5 @@ package project_sanity;
 public interface IWoundable {
     
     void wound();
+    int getWounds();
 }
