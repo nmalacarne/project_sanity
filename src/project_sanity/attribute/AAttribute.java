@@ -13,7 +13,7 @@ import project_sanity.IGrowable;
 import project_sanity.IResetable;
 import project_sanity.IValuable;
 import project_sanity.counter.ACounter;
-import project_sanity.counter.DecayCounter;
+import project_sanity.counter.Decay;
 import project_sanity.range.Range;
 
 /**
@@ -40,7 +40,7 @@ public abstract class AAttribute implements IDecayable, IGrowable,
 
     @Override
     public void decay() {
-        m_decay.add(new DecayCounter());
+        m_decay.add(new Decay());
     }
 
     @Override
