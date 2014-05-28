@@ -6,6 +6,7 @@
 
 package project_sanity.essence.energy;
 
+import java.util.logging.Logger;
 import project_sanity.essence.AEssence;
 import project_sanity.range.Range;
 
@@ -15,6 +16,8 @@ import project_sanity.range.Range;
  */
 public class Energy extends AEssence {
 
+    private final static Logger LOG = Logger.getLogger(Energy.class.getName());
+    
     private final Range range;
 
     public Energy() {
