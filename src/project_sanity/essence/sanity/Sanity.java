@@ -15,7 +15,7 @@ import project_sanity.range.Range;
 
 /**
  *
- * @author nicholas
+ * @author nicholas malacarne <nicholas.malacarne@gmail.com>
  */
 public class Sanity extends AEssence implements IWoundable, IMendable {
 
